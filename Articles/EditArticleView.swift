@@ -33,17 +33,23 @@ struct EditArticleView: View {
                     .foregroundColor(.secondary)
                     .padding(.bottom, 16)
                 
+                HStack {
+                    Spacer()
+                    Image(article.imagePath)
+                        .renderingMode(.original)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 360, height: 200, alignment: .center)
+                        .cornerRadius(25)
+                        
+                    Spacer()
+                }
+                
+                Spacer()
+                
                 Text(article.content)
                     .font(.body)
                     .padding(.bottom, 16)
-                
-                if !article.imagePath.isEmpty {
-                    Image(systemName: "photo")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxWidth: .infinity)
-                        .padding(.bottom, 16)
-                }
             }
             .padding()
             .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -57,7 +63,13 @@ struct EditArticleView: View {
     do {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: Article.self, configurations: config)
-        let example = Article(title: "A Journey into SwiftUI", summary: "An exploration into the world of SwiftUI, Apple's modern framework for building user interfaces.", author: "Jane Doe", imagePath: "", content: "SwiftUI is a powerful framework that allows developers to build... and more.")
+        let example = Article(
+            title: "A Journey into SwiftUI",
+            summary: "An exploration into the world of SwiftUI, Apple's modern framework for building user interfaces.",
+            author: "Jane Doe",
+            imagePath: "sneaker",
+            content: "SwiftUI is a powerful framework that allows developers to build... and more."
+        )
         return EditArticleView(article: example)
             .modelContainer(container)
         
