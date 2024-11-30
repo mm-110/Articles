@@ -25,13 +25,19 @@ struct EditArticleView: View {
                     Text(article.createdAt, format: .dateTime.year().month().day())
                         .font(.subheadline)
                 }
-                .padding(.bottom, 16)
+                .padding(.bottom, 10)
                 
-                Text(article.summary)
-                    .font(.body)
-                    .italic()
-                    .foregroundColor(.secondary)
-                    .padding(.bottom, 16)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 15)
+                        .fill(.gray)
+                        .opacity(0.2)
+                    
+                    Text(article.summary)
+                        .font(.body)
+                        .italic()
+                        .foregroundColor(.secondary)
+                        .padding(10)
+                }
                 
                 HStack {
                     Spacer()
